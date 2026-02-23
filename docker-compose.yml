@@ -1,0 +1,22 @@
+services:
+  grass-desktop:
+    build: .
+    container_name: grass-desktop
+    hostname: my_device
+
+    env_file:
+      - .env
+
+    environment:
+      CHROME_BIN: /usr/bin/google-chrome
+      CHROMEDRIVER_PATH: /usr/bin/chromedriver
+
+    volumes:
+      - /opt/google/chrome/google-chrome:/usr/bin/google-chrome:ro
+      - /usr/bin/chromedriver:/usr/bin/chromedriver:ro
+
+    ports:
+      - "5900:5900"
+      - "6080:6080"
+
+    restart: unless-stopped
